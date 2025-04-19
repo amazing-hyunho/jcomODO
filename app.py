@@ -19,7 +19,7 @@ if key:
             st.write(message["content"])
 
     # 🔹 사용자 입력 받기
-    if question := st.chat_input("궁금한 성경 지식을 입력하세요:"):
+    if question := st.chat_input("각 순원들의 MBTI 정보와 순의 분위기를 입력해주세요.:"):
         with st.chat_message("user"):
             st.write(question)
 
