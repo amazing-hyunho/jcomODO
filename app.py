@@ -9,15 +9,19 @@ from config import OPENAI_API_KEY
 # 🔧 기본 설정
 st.set_page_config(page_title="🙏 제이컴 사역 추천 봇", layout="centered")
 
-# ✅ 배경 이미지 스타일 주입
 st.markdown("""
     <style>
     .stApp {
-        background-image: url("https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0");
+        background-image: url("https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2F4afpy%2Fbtq2kqRD1Y9%2FA088QLprnIPAPdTvN01Vq0%2Fimg.png");
         background-size: cover;
         background-position: center;
-        background-repeat: no-repeat;
         background-attachment: fixed;
+    }
+    .block-container {
+        background-color: rgba(255, 255, 255, 0.85);  /* 반투명 흰색 */
+        padding: 2rem;
+        border-radius: 1rem;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     }
     </style>
 """, unsafe_allow_html=True)
