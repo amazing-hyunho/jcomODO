@@ -21,27 +21,6 @@ CATEGORIES = {
     "나눔": {"emoji": "💬", "color": "#d5f5e3"},
 }
 
-# 📊 카테고리 레이더용 기본값 초기화
-def initialize_score():
-    return {category: 0 for category in CATEGORIES}
-
-# 📊 레이더 차트 그리기
-def render_radar_chart(scores):
-    labels = list(scores.keys())
-    values = list(scores.values())
-
-    angles = [n / float(len(labels)) * 2 * pi for n in range(len(labels))]
-    values += values[:1]
-    angles += angles[:1]
-
-    fig, ax = plt.subplots(figsize=(6, 6), subplot_kw=dict(polar=True))
-    ax.plot(angles, values, linewidth=2, linestyle='solid', color='#5D6D7E')
-    ax.fill(angles, values, '#AED6F1', alpha=0.4)
-    ax.set_yticklabels([])
-    ax.set_xticks(angles[:-1])
-    ax.set_xticklabels(labels, fontsize=12)
-    st.pyplot(fig)
-
 # 🔧 기본 설정
 st.set_page_config(page_title="📖 제이컴 사역 추천 봇", layout="centered")
 st.title("📖 제이컴 사역 추천 봇")
@@ -84,11 +63,6 @@ if question := st.chat_input("각 순원들의 MBTI 정보와 순의 분위기�
     # 대화 기록 저장
     st.session_state.messages.append({"role": "user", "content": question})
     st.session_state.messages.append({"role": "assistant", "content": response})
-
-# 📊 사역 성향 차트 시각화
-with st.expander("📈 추천 사역 성향 차트 보기", expanded=True):
-    st.markdown("사역 추천에 언급된 항목들을 시각화한 그래프입니다.")
-    render_radar_chart(st.session_state.scores)
 
 # 🔽 자동 스크롤
 st.components.v1.html("""
