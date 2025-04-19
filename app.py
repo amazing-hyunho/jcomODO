@@ -29,8 +29,6 @@ st.caption("MBTI와 분위기를 기반으로 사역을 추천해드릴게요. �
 # 💬 세션 초기화
 if "messages" not in st.session_state:
     st.session_state.messages = []
-if "scores" not in st.session_state:
-    st.session_state.scores = initialize_score()
 
 # 🔁 기존 대화 표시
 for message in st.session_state.messages:
