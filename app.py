@@ -6,6 +6,9 @@ from math import pi
 from chatbot import get_response_stream
 from config import OPENAI_API_KEY
 
+# 🔧 기본 설정
+st.set_page_config(page_title="🙏 제이컴 사역 추천 봇", layout="centered")
+
 # ✅ 배경 이미지 스타일 주입
 st.markdown("""
     <style>
@@ -34,8 +37,6 @@ CATEGORIES = {
     "나눔": {"emoji": "💬", "color": "#d5f5e3"},
 }
 
-# 🔧 기본 설정
-st.set_page_config(page_title="📖 제이컴 사역 추천 봇", layout="centered")
 st.title("📖 제이컴 사역 추천 봇")
 st.caption("MBTI와 분위기를 기반으로 사역을 추천해드릴게요. 😊")
 
