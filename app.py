@@ -6,6 +6,19 @@ from math import pi
 from chatbot import get_response_stream
 from config import OPENAI_API_KEY
 
+# ✅ 배경 이미지 스타일 주입
+st.markdown("""
+    <style>
+    .stApp {
+        background-image: url("https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+    </style>
+""", unsafe_allow_html=True)
+
 # 🌈 사역 카테고리 이모지 + 색상 정의
 CATEGORIES = {
     "찬양": {"emoji": "🎵", "color": "#d6eaf8"},
