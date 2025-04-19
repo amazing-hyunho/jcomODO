@@ -45,7 +45,6 @@ for message in st.session_state.messages:
             if keyword in content:
                 content = content.replace(keyword, f'{config["emoji"]} **{keyword}**')
                 bg_color = config["color"]
-                st.session_state.scores[keyword] += 1  # 점수 추가
         st.markdown(f"""
         <div style="background-color: {bg_color}; padding: 1rem; border-radius: 10px; margin-bottom: 1rem;">
             {content}
