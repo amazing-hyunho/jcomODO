@@ -7,7 +7,7 @@ from config import OPENAI_API_KEY  # API 키 로드
 key = True
 # 🔹 API 키가 입력된 경우 실행
 if key:
-    st.title("📖 제이컴 사역 추천")
+    st.title("📖 제이컴 사역 추천 봇")
 
     # 🔹 세션 상태 초기화
     if "messages" not in st.session_state:
