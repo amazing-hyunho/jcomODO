@@ -3,6 +3,3 @@ openai
 langchain
 langchain-openai
 python-dotenv
-matplotlib
-pandas
-numpy
