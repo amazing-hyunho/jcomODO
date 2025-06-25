@@ -6,26 +6,10 @@ from chatbot import get_response_stream
 from config import OPENAI_API_KEY
 
 # 🔧 기본 설정
-st.set_page_config(page_title="🙏 제이컴 사역 추천 봇", layout="centered")
+st.set_page_config(page_title="의성 어르신", layout="centered")
 
-
-# 🌈 사역 카테고리 이모지 + 색상 정의
-CATEGORIES = {
-    "찬양": {"emoji": "🎵", "color": "#d6eaf8"},
-    "음악": {"emoji": "🎸", "color": "#d6eaf8"},
-    "봉사": {"emoji": "🧹", "color": "#f9e79f"},
-    "섬김": {"emoji": "👐", "color": "#f9e79f"},
-    "리더": {"emoji": "🔥", "color": "#fad7a0"},
-    "인도": {"emoji": "🧭", "color": "#fad7a0"},
-    "진행": {"emoji": "🎤", "color": "#fad7a0"},
-    "기도": {"emoji": "🙏", "color": "#e8daef"},
-    "중보": {"emoji": "🕊️", "color": "#e8daef"},
-    "말씀": {"emoji": "📖", "color": "#d5f5e3"},
-    "나눔": {"emoji": "💬", "color": "#d5f5e3"},
-}
-
-st.title("📖 제이컴 사역 추천 봇")
-st.caption("MBTI와 분위기를 기반으로 사역을 추천해드릴게요. 😊")
+st.title("의성 어르신")
+st.caption("😊")
 
 # 💬 세션 초기화
 if "messages" not in st.session_state:
@@ -51,7 +35,7 @@ for message in st.session_state.messages:
         """, unsafe_allow_html=True)
 
 # 🧠 사용자 질문
-if question := st.chat_input("각 순원들의 MBTI 정보와 순의 분위기를 입력해주세요."):
+if question := st.chat_input(""):
     with st.chat_message("user"):
         st.markdown(question)
 
