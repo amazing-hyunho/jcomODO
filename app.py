@@ -1,55 +1,40 @@
 import streamlit as st
-import pandas as pd
-import numpy as np
-from math import pi
 from chatbot import get_response_stream
-from config import OPENAI_API_KEY
+from config import OPENAI_API_KEY  # API 키 로드
 
-# 🔧 기본 설정
-st.set_page_config(page_title="의성 어르신", layout="centered")
+# 🔹 OpenAI API 키 입력 받기 (사이드바에서 입력 가능)
+#key = st.sidebar.text_input('OPENAI API KEY', type='password', value=OPENAI_API_KEY)
+key = True
+# 🔹 API 키가 입력된 경우 실행
+if key:
+    st.title("📖 큐티 도우미")
 
-st.title("의성 어르신")
-st.caption("😊")
+    # 🔹 세션 상태 초기화
+    if "messages" not in st.session_state:
+        st.session_state.messages = []
 
-# 💬 세션 초기화
-if "messages" not in st.session_state:
-    st.session_state.messages = []
+    # 🔹 이전 대화 기록 출력
+    for message in st.session_state.messages:
+        with st.chat_message(message["role"]):
+            st.write(message["content"])
 
-# 🔁 기존 대화 표시
-for message in st.session_state.messages:
-    if message["role"] == "user":
+    # 🔹 사용자 입력 받기
+    if question := st.chat_input("궁금한 성경 지식을 입력하세요:"):
         with st.chat_message("user"):
-            st.markdown(message["content"])
-    else:
-        # 사역 키워드 매칭 및 이모지 삽입
-        content = message["content"]
-        bg_color = "#f0f0f0"
-        for keyword, config in CATEGORIES.items():
-            if keyword in content:
-                content = content.replace(keyword, f'{config["emoji"]} **{keyword}**')
-                bg_color = config["color"]
-        st.markdown(f"""
-        <div style="background-color: {bg_color}; padding: 1rem; border-radius: 10px; margin-bottom: 1rem;">
-            {content}
-        </div>
-        """, unsafe_allow_html=True)
+            st.write(question)
 
-# 🧠 사용자 질문
-if question := st.chat_input(""):
-    with st.chat_message("user"):
-        st.markdown(question)
+        with st.chat_message("assistant"):
+            # 🔹 스트리밍 응답 출력
+            response = st.write_stream(get_response_stream(question, st.session_state.messages, OPENAI_API_KEY))
 
-    with st.chat_message("assistant"):
-        response = st.write_stream(get_response_stream(question, st.session_state.messages, OPENAI_API_KEY))
-
-    # 대화 기록 저장
-    st.session_state.messages.append({"role": "user", "content": question})
-    st.session_state.messages.append({"role": "assistant", "content": response})
-
-# 🔽 자동 스크롤
-st.components.v1.html("""
+        # 🔹 세션 상태에 대화 저장
+        st.session_state.messages.append({"role": "user", "content": question})
+        st.session_state.messages.append({"role": "assistant", "content": response})
+# 🔹 자동 스크롤 스크립트
+js = '''
 <script>
     var body = window.parent.document.querySelector(".main");
-    body.scrollTop = body.scrollHeight;
+    body.scrollTop = 0;
 </script>
-""", height=0)
+'''
+st.components.v1.html(js)
