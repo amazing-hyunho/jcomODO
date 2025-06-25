@@ -7,7 +7,7 @@ from config import OPENAI_API_KEY  # API 키 로드
 key = True
 # 🔹 API 키가 입력된 경우 실행
 if key:
-    st.title("📖 큐티 도우미")
+    st.title("의성 아웃리치 전도체험")
 
     # 🔹 세션 상태 초기화
     if "messages" not in st.session_state:
@@ -19,7 +19,7 @@ if key:
             st.write(message["content"])
 
     # 🔹 사용자 입력 받기
-    if question := st.chat_input("궁금한 성경 지식을 입력하세요:"):
+    if question := st.chat_input(""):
         with st.chat_message("user"):
             st.write(question)
 
