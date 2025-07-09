@@ -27,7 +27,6 @@ if key:
         with st.chat_message("assistant"):
             # 🔹 스트리밍 응답 출력
             response = st.write_stream(get_response_stream(question, st.session_state.messages, OPENAI_API_KEY))
-            st.write(response)
 
         # 🔹 세션 상태에 대화 저장
         st.session_state.messages.append({"role": "user", "content": question})
