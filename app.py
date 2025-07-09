@@ -8,7 +8,7 @@ key = True
 
 # 🔹 API 키가 입력된 경우 실행
 if key:
-    st.title("의성 아웃리치 전도체험")
+    st.title("의성주민 전도체험")
 
     # 🔹 세션 상태 초기화
     if "messages" not in st.session_state:
@@ -17,11 +17,7 @@ if key:
     # 🔹 이전 대화 기록 출력
     for message in st.session_state.messages:
         with st.chat_message(message["role"]):
-            # ✅ 할아버지 아이콘 붙이기
-            if message["role"] == "assistant":
-                st.write("🧓 할아버지: " + message["content"])
-            else:
-                st.write(message["content"])
+            st.write(message["content"])
 
     # 🔹 사용자 입력 받기
     if question := st.chat_input(""):
@@ -31,9 +27,7 @@ if key:
         with st.chat_message("assistant"):
             # 🔹 스트리밍 응답 출력
             response = st.write_stream(get_response_stream(question, st.session_state.messages, OPENAI_API_KEY))
-            # ✅ 할아버지 이모지를 출력에 추가
-            response_with_emoji = "🧓 할아버지: " + response
-            st.write(response_with_emoji)
+            st.write(response)
 
         # 🔹 세션 상태에 대화 저장
         st.session_state.messages.append({"role": "user", "content": question})
